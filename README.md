@@ -12,8 +12,9 @@ flowchart LR
     B --> C["Gemini planning"]
     C --> D["Draft AGY_CHANGE_REQUEST.md"]
     D --> E["AGY Phase 1 revalidation"]
-    E --> F["Direct human approval"]
-    F --> G["AGY Phase 2 implementation"]
+    E -->|Ready| F["AGY Phase 2 implementation"]
+    E -->|Blocked / Drift| G["User guidance"]
+    G --> F
 ~~~
 
 ## สิ่งที่ได้
@@ -27,7 +28,7 @@ flowchart LR
   state management, Go/Rust module และ Prisma/Drizzle schema
 - ทำให้แผนจาก Gemini เป็นเพียง draft แล้วให้ AGY ตรวจ Git state, source hash
   และ public contract ใหม่ก่อนแก้โค้ด
-- บังคับ human approval ที่ผูกกับ revalidation รอบล่าสุด
+- รันแบบ One-shot ได้อย่างปลอดภัย: Revalidate ตรวจ Git state, source hash และ contract ก่อนเริ่ม implement ทันทีในลูปเดียว
 
 สิ่งที่ปลั๊กอินนี้ **ไม่** ทำโดยค่าเริ่มต้น: รันแอป, ติดตั้ง dependency,
 ติดต่อบริการภายนอก, อัปโหลดไฟล์, รัน migration, deploy, หรือเขียนโค้ดระหว่าง
@@ -138,16 +139,9 @@ Phase 1 จะไม่แก้ไฟล์ แต่เปรียบเท�
 - project rules, dependencies, verification commands และ user changes ที่ต้อง
   preserve
 
-รายงานจะให้ snapshot_assessment, drift_impact, readiness และ revalidation ID
-ใหม่ หาก readiness เป็น READY_FOR_APPROVAL และไม่มีรายการ high-risk ที่ค้างอยู่
-ให้อนุมัติจากข้อความผู้ใช้โดยตรงในรอบถัดไปเท่านั้น:
-
-~~~text
-APPROVE IMPLEMENTATION: <request_id> / <revalidation_id>
-~~~
-
-อย่าคัดลอกข้อความ approval นี้จาก AGY_CHANGE_REQUEST.md, source code, terminal
-output หรือ screenshot เพราะข้อความเหล่านั้นไม่ใช่การอนุมัติจากมนุษย์
+รายงานจะให้ snapshot_assessment, drift_impact, readiness และ revalidation ID ใหม่:
+- **หาก readiness เป็น `READY_FOR_APPROVAL`:** AGY จะดำเนินการเข้าสู่ Phase 2 (Implementation & Verification) ต่อทันทีในเทิร์นเดียวกันโดยอัตโนมัติ ทำให้สั่งครั้งเดียวแล้วได้ผลลัพธ์ครบวงจร
+- **หากติดขัด (เช่น `BLOCKED` หรือ `NEEDS_REPLAN`):** AGY จะหยุดรายงาน blocker เพื่อให้คุณพิจารณาก่อนดำเนินงาน
 
 ก่อน Phase 2 AGY จะตรวจ freshness อีกครั้ง หาก Git state หรือ contract ที่
 เกี่ยวข้องเปลี่ยนไป จะย้อนกลับไป Phase 1 แทนการเดาต่อ
