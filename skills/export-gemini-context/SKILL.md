@@ -38,7 +38,7 @@ authorizes its replacement. Otherwise, if the output already exists, stop and
 ask before writing it. Do not read a previous export merely to decide whether it
 may be overwritten.
 
-Default language is Thai explanatory prose. Preserve source identifiers, paths,
+Default language is English explanatory prose. Preserve source identifiers, paths,
 commands, schema names, and code in their original language.
 
 ## Authority and non-negotiable boundaries
@@ -374,7 +374,7 @@ Before reporting completion, confirm:
 
 ## Completion response
 
-Return a concise Thai summary containing:
+Return a concise summary containing:
 
 - created or updated artifact paths;
 - snapshot ID and effective scope;

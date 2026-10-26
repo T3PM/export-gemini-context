@@ -31,7 +31,7 @@ Constraints:
 
 [ADD COMPATIBILITY, DEADLINE, COST, UX, SECURITY, OPERATIONAL, OR SCOPE CONSTRAINTS]
 
-Respond in Thai explanatory prose while preserving code identifiers and paths.
+Respond in English explanatory prose while preserving code identifiers and paths.
 Never expose or reconstruct secrets, tokens, private URLs, personal data, or
 redacted values from the attached context.
 
@@ -70,7 +70,7 @@ order as implementation-ready.
 
 ## Required output
 
-First provide a concise Thai analysis:
+First provide a concise analysis:
 
 1. Current-state evidence relevant to the request.
 2. Recommended approach and material trade-offs.
