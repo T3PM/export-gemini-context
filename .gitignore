@@ -16,8 +16,28 @@ drafts/
 .env
 .env.local
 .env.*.local
+.env.*
+!.env.example
+!.env.sample
 *.pem
 *.key
+*.p8
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.kubeconfig
+kubeconfig
+credentials.json
+credentials-*.json
+service-account*.json
+.npmrc
+.pypirc
+.netrc
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
 
 # Operating System Files
 .DS_Store
