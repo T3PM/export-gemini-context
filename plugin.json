@@ -1,0 +1,16 @@
+{
+  "name": "export-gemini-context",
+  "displayName": "Export Gemini Context",
+  "version": "1.0.0",
+  "description": "Export evidence-backed project context for Gemini architectural planning and safe Antigravity implementation.",
+  "author": {
+    "name": "T3PM"
+  },
+  "keywords": [
+    "gemini",
+    "context",
+    "export",
+    "planning",
+    "architecture"
+  ]
+}

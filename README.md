@@ -28,12 +28,13 @@ flowchart LR
 
 ```text
 export-gemini-context/
-├── .agents/
-│   └── skills/
-│       ├── export-gemini-context/
-│       │   └── SKILL.md              # Skill: /export-gemini-context
-│       └── agy-implementation/
-│           └── SKILL.md              # Skill: /agy-implementation
+├── plugin.json                       # Antigravity Plugin manifest (enables / slash commands)
+├── skills/                           # Plugin skills directory
+│   ├── export-gemini-context/
+│   │   └── SKILL.md
+│   └── agy-implementation/
+│       └── SKILL.md
+├── .agents/skills/                   # Standard Agent Skills structure
 ├── prompts/
 │   ├── gemini-planning.md            # Prompt for architectural planning in Gemini
 │   └── agy-implementation.md         # Reference implementation prompt
